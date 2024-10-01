@@ -26,5 +26,30 @@ namespace ArtistCharts
         {
 
         }
+
+        private void btn_genreFilter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_increasingSort_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_decreasingSort_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_compareArtists_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

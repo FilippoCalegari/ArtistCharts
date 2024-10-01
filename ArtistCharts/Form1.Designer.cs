@@ -60,6 +60,7 @@
             this.btn_genreFilter.TabIndex = 1;
             this.btn_genreFilter.Text = "Filtra per genere di appartenenza";
             this.btn_genreFilter.UseVisualStyleBackColor = false;
+            this.btn_genreFilter.Click += new System.EventHandler(this.btn_genreFilter_Click);
             // 
             // btn_increasingSort
             // 
@@ -72,6 +73,7 @@
             this.btn_increasingSort.TabIndex = 2;
             this.btn_increasingSort.Text = "Ordina in modo crescente";
             this.btn_increasingSort.UseVisualStyleBackColor = false;
+            this.btn_increasingSort.Click += new System.EventHandler(this.btn_increasingSort_Click);
             // 
             // btn_decreasingSort
             // 
@@ -84,6 +86,7 @@
             this.btn_decreasingSort.TabIndex = 3;
             this.btn_decreasingSort.Text = "Ordina in modo decrescente";
             this.btn_decreasingSort.UseVisualStyleBackColor = false;
+            this.btn_decreasingSort.Click += new System.EventHandler(this.btn_decreasingSort_Click);
             // 
             // listView1
             // 
@@ -93,6 +96,7 @@
             this.listView1.Size = new System.Drawing.Size(294, 294);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // btn_compareArtists
             // 
@@ -105,6 +109,7 @@
             this.btn_compareArtists.TabIndex = 6;
             this.btn_compareArtists.Text = "Compara due artisti";
             this.btn_compareArtists.UseVisualStyleBackColor = false;
+            this.btn_compareArtists.Click += new System.EventHandler(this.btn_compareArtists_Click);
             // 
             // Form1
             // 
