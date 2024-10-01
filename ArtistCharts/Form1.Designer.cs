@@ -32,7 +32,7 @@
             this.btn_genreFilter = new System.Windows.Forms.Button();
             this.btn_increasingSort = new System.Windows.Forms.Button();
             this.btn_decreasingSort = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.list_artistsCharts = new System.Windows.Forms.ListView();
             this.btn_compareArtists = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -88,15 +88,15 @@
             this.btn_decreasingSort.UseVisualStyleBackColor = false;
             this.btn_decreasingSort.Click += new System.EventHandler(this.btn_decreasingSort_Click);
             // 
-            // listView1
+            // list_artistsCharts
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(336, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(294, 294);
-            this.listView1.TabIndex = 5;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.list_artistsCharts.HideSelection = false;
+            this.list_artistsCharts.Location = new System.Drawing.Point(336, 12);
+            this.list_artistsCharts.Name = "list_artistsCharts";
+            this.list_artistsCharts.Size = new System.Drawing.Size(294, 294);
+            this.list_artistsCharts.TabIndex = 5;
+            this.list_artistsCharts.UseCompatibleStateImageBehavior = false;
+            this.list_artistsCharts.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // btn_compareArtists
             // 
@@ -118,7 +118,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(647, 323);
             this.Controls.Add(this.btn_compareArtists);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.list_artistsCharts);
             this.Controls.Add(this.btn_decreasingSort);
             this.Controls.Add(this.btn_increasingSort);
             this.Controls.Add(this.btn_genreFilter);
@@ -136,7 +136,7 @@
         private System.Windows.Forms.Button btn_genreFilter;
         private System.Windows.Forms.Button btn_increasingSort;
         private System.Windows.Forms.Button btn_decreasingSort;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView list_artistsCharts;
         private System.Windows.Forms.Button btn_compareArtists;
     }
 }
