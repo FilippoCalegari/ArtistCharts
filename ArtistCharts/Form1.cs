@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 /*
     Funzionalità:
@@ -22,7 +24,7 @@ namespace ArtistCharts
     public partial class Form1 : Form
     {
         private List<Artists> artistsCharts;
-        private string fileName = "./ArtistsChart.csv";
+        private string fileName = "./ArtistsCharts.csv";
         public Form1()
         {
             InitializeComponent();
@@ -34,9 +36,19 @@ namespace ArtistCharts
             FillList();
         }
 
-        private void btn_countryFilter_Click(object sender, EventArgs e)
+        private void btn_nameFilter_Click(object sender, EventArgs e)
         {
+            string artistName = Interaction.InputBox("Inserisci il nome dell'artista da cercare:", "Filtra per artista", "");
 
+            foreach (var artist in artistsCharts)
+            {
+                if (artistName == artist.Artist)
+                {
+                    list_artistsCharts.Clear();
+
+                    //list_artistsCharts
+                }
+            }
         }
 
         private void btn_genreFilter_Click(object sender, EventArgs e)
@@ -65,7 +77,46 @@ namespace ArtistCharts
         }
         public void FillList()
         {
+            StreamReader sr = new StreamReader(fileName);
+            string line = sr.ReadLine();
 
+            while (line != null)
+            {
+                Artists artist = new Artists(line.Split(',')[0], line.Split(',')[1], line.Split(',')[2], line.Split(',')[3], line.Split(',')[4]);
+                artistsCharts.Add(artist);
+                
+                line = sr.ReadLine();
+            }
+            sr.Close();
+
+            list_artistsCharts.View = View.Details;
+
+            list_artistsCharts.Items.Clear(); // Pulisci gli elementi esistenti
+            list_artistsCharts.Columns.Clear(); // Pulisci le colonne esistenti
+
+            // Aggiungi i titoli delle colonne
+            list_artistsCharts.Columns.Add("Track Name", 100);
+            list_artistsCharts.Columns.Add("Artist", 100);
+            list_artistsCharts.Columns.Add("Popularity", 100);
+            list_artistsCharts.Columns.Add("Duration in ms", 100);
+            list_artistsCharts.Columns.Add("Track ID", 100);
+
+            // Aggiungi i dati dalla lista alla ListView
+            foreach (var artist in artistsCharts)
+            {
+                ListViewItem item = new ListViewItem(artist.Artist);
+                item.SubItems.Add(artist.TrackName);
+                item.SubItems.Add(artist.Popularity);
+                item.SubItems.Add(artist.Duration);
+                item.SubItems.Add(artist.ID);
+
+                list_artistsCharts.Items.Add(item);
+            }
+
+            foreach (ColumnHeader column in list_artistsCharts.Columns)
+            {
+                column.Width = -2; // La larghezza è automatica
+            }
         }
         class Artists
         {
@@ -95,12 +146,20 @@ namespace ArtistCharts
                 get => _duration;
                 set => _duration = value;
             }
-            public Artists(string artist, string trackName,string popularity, string duration)
+
+            private string _id;
+            public string ID
+            {
+                get => _id;
+                set => _id = value;
+            }
+            public Artists(string artist, string trackName,string popularity, string duration, string id)
             {
                 Artist = artist;
                 TrackName = trackName;
                 Popularity = popularity;
                 Duration = duration;
+                ID = id;
             }
         }
     }
