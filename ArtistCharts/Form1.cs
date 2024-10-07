@@ -75,32 +75,32 @@ namespace ArtistCharts
                 get => _artist;
                 set => _artist = value;
             }
-            private string _country;
-            public string Country
+            private string _trackname;
+            public string TrackName
             {
-                get => _country;
-                set => _country = value;
+                get => _trackname;
+                set => _trackname = value;
             }
 
-            private string _genre;
-            public string Genre
+            private string _popularity;
+            public string Popularity
             {
-                get => _genre;
-                set => _genre = value;
+                get => _popularity;
+                set => _popularity = value;
             }
 
-            private string _listeners;
-            public string Listeners
+            private string _duration;
+            public string Duration
             {
-                get => _listeners;
-                set => _listeners = value;
+                get => _duration;
+                set => _duration = value;
             }
-            public Artists(string artist, string country,string genre, string listeners)
+            public Artists(string artist, string trackName,string popularity, string duration)
             {
                 Artist = artist;
-                Country = country;
-                Genre = genre;
-                Listeners = listeners;
+                TrackName = trackName;
+                Popularity = popularity;
+                Duration = duration;
             }
         }
     }
