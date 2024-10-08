@@ -38,16 +38,43 @@ namespace ArtistCharts
 
         private void btn_nameFilter_Click(object sender, EventArgs e)
         {
+            // Prompt l'utente per inserire il nome dell'artista
             string artistName = Interaction.InputBox("Inserisci il nome dell'artista da cercare:", "Filtra per artista", "");
 
+            // Se l'utente non inserisce nulla, usciamo dalla funzione
+            if (string.IsNullOrWhiteSpace(artistName))
+            {
+                MessageBox.Show("Inserisci il nome dell'artista.");
+                return;
+            }
+
+            // Puliamo la ListView prima di mostrare i risultati
+            list_artistsCharts.Items.Clear();
+
+            bool artistFound = false;
+
+            // Iteriamo su tutti gli artisti nella collezione artistsCharts
             foreach (var artist in artistsCharts)
             {
-                if (artistName == artist.Artist)
+                // Controlliamo se il nome dell'artista corrisponde a quello inserito dall'utente (con confronto case-insensitive)
+                if (artist.Artist.Equals(artistName, StringComparison.OrdinalIgnoreCase))
                 {
-                    list_artistsCharts.Clear();
+                    ListViewItem item = new ListViewItem(artist.Artist);
+                    item.SubItems.Add(artist.TrackName);
+                    item.SubItems.Add(artist.Popularity);
+                    item.SubItems.Add(artist.Duration);
+                    item.SubItems.Add(artist.ID);
 
-                    //list_artistsCharts
+                    list_artistsCharts.Items.Add(item);
+                    
+                    artistFound = true; // Artista trovato
                 }
+            }
+
+            // Se l'artista non è stato trovato, mostriamo un messaggio
+            if (!artistFound)
+            {
+                MessageBox.Show("Artista non trovato.");
             }
         }
 
@@ -95,8 +122,8 @@ namespace ArtistCharts
             list_artistsCharts.Columns.Clear(); // Pulisci le colonne esistenti
 
             // Aggiungi i titoli delle colonne
-            list_artistsCharts.Columns.Add("Track Name", 100);
             list_artistsCharts.Columns.Add("Artist", 100);
+            list_artistsCharts.Columns.Add("Track Name", 100);
             list_artistsCharts.Columns.Add("Popularity", 100);
             list_artistsCharts.Columns.Add("Duration in ms", 100);
             list_artistsCharts.Columns.Add("Track ID", 100);
