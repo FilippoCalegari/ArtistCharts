@@ -82,7 +82,7 @@ namespace ArtistCharts
 
             while (line != null)
             {
-                Artists artist = new Artists(line.Split(',')[0], line.Split(',')[1], line.Split(',')[2], line.Split(',')[3], line.Split(',')[4]);
+                Artists artist = new Artists(line.Split(';')[0], line.Split(';')[1], line.Split(';')[2], line.Split(';')[3], line.Split(';')[4]);
                 artistsCharts.Add(artist);
                 
                 line = sr.ReadLine();
