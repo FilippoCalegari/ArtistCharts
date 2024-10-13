@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -78,16 +80,58 @@ namespace ArtistCharts
             }
         }
 
-        private void btn_genreFilter_Click(object sender, EventArgs e)
+        private void btn_popularitySort_Click(object sender, EventArgs e)
         {
+            // Ordinamento con "OrderByDescending" e conversione in int dei valori "Popularity"
+            artistsCharts = artistsCharts.OrderByDescending(artist => int.Parse(artist.Popularity)).ToList();
 
+            // Pulisci gli elementi esistenti
+            list_artistsCharts.Items.Clear();
+
+            // Aggiungi i dati ordinati alla ListView
+            foreach (var artist in artistsCharts)
+            {
+                ListViewItem item = new ListViewItem(artist.Artist);
+                item.SubItems.Add(artist.TrackName);
+                item.SubItems.Add(artist.Popularity);
+                item.SubItems.Add(artist.Duration);
+                item.SubItems.Add(artist.ID);
+
+                list_artistsCharts.Items.Add(item);
+            }
+
+            // Ridimensiona le colonne 
+            foreach (ColumnHeader column in list_artistsCharts.Columns)
+            {
+                column.Width = -2; // La larghezza è automatica
+            }
         }
-
-        private void btn_increasingSort_Click(object sender, EventArgs e)
+        private void btn_durationSort_Click(object sender, EventArgs e)
         {
+            // Ordinamento con "OrderByDescending" e conversione in int dei valori "Popularity"
+            artistsCharts = artistsCharts.OrderByDescending(artist => int.Parse(artist.Duration)).ToList();
 
+            // Pulisci gli elementi esistenti
+            list_artistsCharts.Items.Clear();
+
+            // Aggiungi i dati ordinati alla ListView
+            foreach (var artist in artistsCharts)
+            {
+                ListViewItem item = new ListViewItem(artist.Artist);
+                item.SubItems.Add(artist.TrackName);
+                item.SubItems.Add(artist.Popularity);
+                item.SubItems.Add(artist.Duration);
+                item.SubItems.Add(artist.ID);
+
+                list_artistsCharts.Items.Add(item);
+            }
+
+            // Ridimensiona le colonne 
+            foreach (ColumnHeader column in list_artistsCharts.Columns)
+            {
+                column.Width = -2; // La larghezza è automatica
+            }
         }
-
         private void btn_decreasingSort_Click(object sender, EventArgs e)
         {
 
@@ -104,6 +148,10 @@ namespace ArtistCharts
         }
         public void FillList()
         {
+            artistsCharts.Clear(); // Svuoto la lista
+            list_artistsCharts.Items.Clear(); // Pulisci gli elementi esistenti
+            list_artistsCharts.Columns.Clear(); // Pulisci le colonne esistenti
+
             StreamReader sr = new StreamReader(fileName);
             string line = sr.ReadLine();
 
@@ -125,7 +173,7 @@ namespace ArtistCharts
             list_artistsCharts.Columns.Add("Artist", 100);
             list_artistsCharts.Columns.Add("Track Name", 100);
             list_artistsCharts.Columns.Add("Popularity", 100);
-            list_artistsCharts.Columns.Add("Duration in ms", 100);
+            list_artistsCharts.Columns.Add("Duration in minutes", 100);
             list_artistsCharts.Columns.Add("Track ID", 100);
 
             // Aggiungi i dati dalla lista alla ListView
@@ -143,6 +191,47 @@ namespace ArtistCharts
             foreach (ColumnHeader column in list_artistsCharts.Columns)
             {
                 column.Width = -2; // La larghezza è automatica
+            }
+        }
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            FillList();
+        }
+
+        private void btn_listenToSong_Click(object sender, EventArgs e)
+        {
+            string trackID = null;
+            // Selezioniamo la canzone 
+            if (list_artistsCharts.SelectedItems.Count > 0)
+            {
+                // Ottieni l'elemento selezionato
+                ListViewItem selectedItem = list_artistsCharts.SelectedItems[0];
+
+                // Assegniamo ad una variabile l'ID della traccia
+                trackID = selectedItem.SubItems[4].Text;
+            }
+            else
+            {
+                MessageBox.Show("Selezionare una traccia.");
+                return;
+            }
+
+            // Costruzione della URL per la traccia su Spotify
+            var url = $"https://open.spotify.com/track/{trackID}";
+
+            // Avvio del processo per aprire il browser in .NET Core o Framework
+            var process = new ProcessStartInfo(url)
+            {
+                UseShellExecute = true  // Necessario per l'apertura nel browser predefinito
+            };
+
+            try
+            {
+                Process.Start(process);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Errore nell'aprire la canzone: {ex.Message}");
             }
         }
         class Artists
@@ -180,7 +269,7 @@ namespace ArtistCharts
                 get => _id;
                 set => _id = value;
             }
-            public Artists(string artist, string trackName,string popularity, string duration, string id)
+            public Artists(string artist, string trackName, string popularity, string duration, string id)
             {
                 Artist = artist;
                 TrackName = trackName;
