@@ -19,6 +19,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
     - Filtra per paese di provenienza
     - Filtra per genere di appartenenza
     - Confronta due artisti
+
+    Confronto tra due artisti:
+    - Media di popolarità
+    - Media durata traccia
+    - 
 */
 
 namespace ArtistCharts
@@ -40,7 +45,9 @@ namespace ArtistCharts
 
         private void btn_nameFilter_Click(object sender, EventArgs e)
         {
-            // Prompt l'utente per inserire il nome dell'artista
+            list_artistsCharts.Show();
+
+            // Input box per inserire il nome dell'artista
             string artistName = Interaction.InputBox("Inserisci il nome dell'artista da cercare:", "Filtra per artista", "");
 
             // Se l'utente non inserisce nulla, usciamo dalla funzione
@@ -82,6 +89,8 @@ namespace ArtistCharts
 
         private void btn_popularitySort_Click(object sender, EventArgs e)
         {
+            list_artistsCharts.Show();
+
             // Ordinamento con "OrderByDescending" e conversione in int dei valori "Popularity"
             artistsCharts = artistsCharts.OrderByDescending(artist => int.Parse(artist.Popularity)).ToList();
 
@@ -108,6 +117,8 @@ namespace ArtistCharts
         }
         private void btn_durationSort_Click(object sender, EventArgs e)
         {
+            list_artistsCharts.Show();
+
             // Ordinamento con "OrderByDescending" e conversione in int dei valori "Popularity"
             artistsCharts = artistsCharts.OrderByDescending(artist => int.Parse(artist.Duration)).ToList();
 
@@ -132,13 +143,14 @@ namespace ArtistCharts
                 column.Width = -2; // La larghezza è automatica
             }
         }
-        private void btn_decreasingSort_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_compareArtists_Click(object sender, EventArgs e)
         {
+            // Input box per inserire il nome degli artisti
+            string firstArtist = Interaction.InputBox("Inserisci il nome del primo artista:", "Confronto tra due artisti", "");
+            string secondArtist = Interaction.InputBox("Inserisci il nome del secondo artista:", "Confronto tra due artisti", "");
+
+            list_artistsCharts.Hide();
+
 
         }
 
@@ -148,6 +160,8 @@ namespace ArtistCharts
         }
         public void FillList()
         {
+            list_artistsCharts.Show();
+
             artistsCharts.Clear(); // Svuoto la lista
             list_artistsCharts.Items.Clear(); // Pulisci gli elementi esistenti
             list_artistsCharts.Columns.Clear(); // Pulisci le colonne esistenti
@@ -200,6 +214,8 @@ namespace ArtistCharts
 
         private void btn_listenToSong_Click(object sender, EventArgs e)
         {
+            list_artistsCharts.Show();
+
             string trackID = null;
             // Selezioniamo la canzone 
             if (list_artistsCharts.SelectedItems.Count > 0)
