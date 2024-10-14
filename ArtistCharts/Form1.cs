@@ -23,7 +23,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
     Confronto tra due artisti:
     - Media di popolarità
     - Media durata traccia
-    - 
+    - Artista con più canzoni in top charts
 */
 
 namespace ArtistCharts

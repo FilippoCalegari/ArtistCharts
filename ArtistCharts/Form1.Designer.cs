@@ -36,6 +36,12 @@
             this.list_artistsCharts = new System.Windows.Forms.ListView();
             this.btn_listenToSong = new System.Windows.Forms.Button();
             this.btn_refresh = new System.Windows.Forms.Button();
+            this.lb_firstArtistPop = new System.Windows.Forms.Label();
+            this.lb_secondArtistPop = new System.Windows.Forms.Label();
+            this.lb_secondArtistDur = new System.Windows.Forms.Label();
+            this.lb_firstArtistDur = new System.Windows.Forms.Label();
+            this.lb_firstArtistCharts = new System.Windows.Forms.Label();
+            this.lb_secondArtistCharts = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_nameFilter
@@ -106,7 +112,7 @@
             // list_artistsCharts
             // 
             this.list_artistsCharts.HideSelection = false;
-            this.list_artistsCharts.Location = new System.Drawing.Point(336, 12);
+            this.list_artistsCharts.Location = new System.Drawing.Point(334, 12);
             this.list_artistsCharts.Name = "list_artistsCharts";
             this.list_artistsCharts.Size = new System.Drawing.Size(895, 374);
             this.list_artistsCharts.TabIndex = 5;
@@ -146,13 +152,73 @@
             this.btn_refresh.UseVisualStyleBackColor = false;
             this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
+            // lb_firstArtistPop
+            // 
+            this.lb_firstArtistPop.AutoSize = true;
+            this.lb_firstArtistPop.Location = new System.Drawing.Point(336, 12);
+            this.lb_firstArtistPop.Name = "lb_firstArtistPop";
+            this.lb_firstArtistPop.Size = new System.Drawing.Size(35, 13);
+            this.lb_firstArtistPop.TabIndex = 8;
+            this.lb_firstArtistPop.Text = "label1";
+            // 
+            // lb_secondArtistPop
+            // 
+            this.lb_secondArtistPop.AutoSize = true;
+            this.lb_secondArtistPop.Location = new System.Drawing.Point(617, 12);
+            this.lb_secondArtistPop.Name = "lb_secondArtistPop";
+            this.lb_secondArtistPop.Size = new System.Drawing.Size(35, 13);
+            this.lb_secondArtistPop.TabIndex = 9;
+            this.lb_secondArtistPop.Text = "label1";
+            // 
+            // lb_secondArtistDur
+            // 
+            this.lb_secondArtistDur.AutoSize = true;
+            this.lb_secondArtistDur.Location = new System.Drawing.Point(617, 88);
+            this.lb_secondArtistDur.Name = "lb_secondArtistDur";
+            this.lb_secondArtistDur.Size = new System.Drawing.Size(35, 13);
+            this.lb_secondArtistDur.TabIndex = 11;
+            this.lb_secondArtistDur.Text = "label1";
+            // 
+            // lb_firstArtistDur
+            // 
+            this.lb_firstArtistDur.AutoSize = true;
+            this.lb_firstArtistDur.Location = new System.Drawing.Point(336, 88);
+            this.lb_firstArtistDur.Name = "lb_firstArtistDur";
+            this.lb_firstArtistDur.Size = new System.Drawing.Size(35, 13);
+            this.lb_firstArtistDur.TabIndex = 10;
+            this.lb_firstArtistDur.Text = "label1";
+            // 
+            // lb_firstArtistCharts
+            // 
+            this.lb_firstArtistCharts.AutoSize = true;
+            this.lb_firstArtistCharts.Location = new System.Drawing.Point(336, 164);
+            this.lb_firstArtistCharts.Name = "lb_firstArtistCharts";
+            this.lb_firstArtistCharts.Size = new System.Drawing.Size(35, 13);
+            this.lb_firstArtistCharts.TabIndex = 12;
+            this.lb_firstArtistCharts.Text = "label1";
+            // 
+            // lb_secondArtistCharts
+            // 
+            this.lb_secondArtistCharts.AutoSize = true;
+            this.lb_secondArtistCharts.Location = new System.Drawing.Point(617, 164);
+            this.lb_secondArtistCharts.Name = "lb_secondArtistCharts";
+            this.lb_secondArtistCharts.Size = new System.Drawing.Size(35, 13);
+            this.lb_secondArtistCharts.TabIndex = 13;
+            this.lb_secondArtistCharts.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1243, 472);
+            this.ClientSize = new System.Drawing.Size(1243, 478);
+            this.Controls.Add(this.lb_secondArtistCharts);
+            this.Controls.Add(this.lb_firstArtistCharts);
+            this.Controls.Add(this.lb_secondArtistDur);
+            this.Controls.Add(this.lb_firstArtistDur);
+            this.Controls.Add(this.lb_secondArtistPop);
+            this.Controls.Add(this.lb_firstArtistPop);
             this.Controls.Add(this.btn_refresh);
             this.Controls.Add(this.btn_listenToSong);
             this.Controls.Add(this.list_artistsCharts);
@@ -167,6 +233,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -179,6 +246,12 @@
         private System.Windows.Forms.ListView list_artistsCharts;
         private System.Windows.Forms.Button btn_listenToSong;
         private System.Windows.Forms.Button btn_refresh;
+        private System.Windows.Forms.Label lb_firstArtistPop;
+        private System.Windows.Forms.Label lb_secondArtistPop;
+        private System.Windows.Forms.Label lb_secondArtistDur;
+        private System.Windows.Forms.Label lb_firstArtistDur;
+        private System.Windows.Forms.Label lb_firstArtistCharts;
+        private System.Windows.Forms.Label lb_secondArtistCharts;
     }
 }
 
