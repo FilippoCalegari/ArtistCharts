@@ -145,13 +145,43 @@ namespace ArtistCharts
         }
         private void btn_compareArtists_Click(object sender, EventArgs e)
         {
+            int firstArtistPop = 0;
+            int secondArtistPop = 0;
+            int counter = 0;
+            int firstArtistMedia;
+            int secondArtistMedia;
             // Input box per inserire il nome degli artisti
             string firstArtist = Interaction.InputBox("Inserisci il nome del primo artista:", "Confronto tra due artisti", "");
             string secondArtist = Interaction.InputBox("Inserisci il nome del secondo artista:", "Confronto tra due artisti", "");
 
             list_artistsCharts.Hide();
+            lb_firstArtistPop.Show();
+            lb_secondArtistPop.Show();
+            lb_firstArtistDur.Show();
+            lb_secondArtistDur.Show();
+            lb_firstArtistCharts.Show();
+            lb_secondArtistCharts.Show();
 
+            foreach (var artist in artistsCharts)
+            {
+                if (artist.Artist == firstArtist)
+                {
+                    firstArtistPop += Convert.ToInt32(artist.Popularity);
+                    counter++;
+                }
 
+                if (artist.Artist == secondArtist)
+                {
+                    secondArtistPop += Convert.ToInt32(artist.Popularity);
+                    counter++;
+                }
+            }
+
+            firstArtistMedia = firstArtistPop / counter;
+            secondArtistMedia = secondArtistPop / counter;
+
+            lb_firstArtistPop.Text = $"{firstArtist} ha una media di popolarità di {firstArtistMedia}";
+            lb_secondArtistPop.Text = $"{secondArtist} ha una media di popolarità di {secondArtistMedia}";
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)

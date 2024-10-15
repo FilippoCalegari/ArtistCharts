@@ -155,56 +155,80 @@
             // lb_firstArtistPop
             // 
             this.lb_firstArtistPop.AutoSize = true;
+            this.lb_firstArtistPop.BackColor = System.Drawing.SystemColors.Control;
+            this.lb_firstArtistPop.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lb_firstArtistPop.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lb_firstArtistPop.Location = new System.Drawing.Point(336, 12);
             this.lb_firstArtistPop.Name = "lb_firstArtistPop";
-            this.lb_firstArtistPop.Size = new System.Drawing.Size(35, 13);
+            this.lb_firstArtistPop.Size = new System.Drawing.Size(51, 21);
             this.lb_firstArtistPop.TabIndex = 8;
             this.lb_firstArtistPop.Text = "label1";
+            this.lb_firstArtistPop.Visible = false;
             // 
             // lb_secondArtistPop
             // 
             this.lb_secondArtistPop.AutoSize = true;
-            this.lb_secondArtistPop.Location = new System.Drawing.Point(617, 12);
+            this.lb_secondArtistPop.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_secondArtistPop.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lb_secondArtistPop.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lb_secondArtistPop.Location = new System.Drawing.Point(336, 61);
             this.lb_secondArtistPop.Name = "lb_secondArtistPop";
-            this.lb_secondArtistPop.Size = new System.Drawing.Size(35, 13);
+            this.lb_secondArtistPop.Size = new System.Drawing.Size(51, 21);
             this.lb_secondArtistPop.TabIndex = 9;
             this.lb_secondArtistPop.Text = "label1";
+            this.lb_secondArtistPop.Visible = false;
             // 
             // lb_secondArtistDur
             // 
             this.lb_secondArtistDur.AutoSize = true;
-            this.lb_secondArtistDur.Location = new System.Drawing.Point(617, 88);
+            this.lb_secondArtistDur.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_secondArtistDur.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lb_secondArtistDur.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lb_secondArtistDur.Location = new System.Drawing.Point(336, 213);
             this.lb_secondArtistDur.Name = "lb_secondArtistDur";
-            this.lb_secondArtistDur.Size = new System.Drawing.Size(35, 13);
+            this.lb_secondArtistDur.Size = new System.Drawing.Size(51, 21);
             this.lb_secondArtistDur.TabIndex = 11;
             this.lb_secondArtistDur.Text = "label1";
+            this.lb_secondArtistDur.Visible = false;
             // 
             // lb_firstArtistDur
             // 
             this.lb_firstArtistDur.AutoSize = true;
-            this.lb_firstArtistDur.Location = new System.Drawing.Point(336, 88);
+            this.lb_firstArtistDur.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_firstArtistDur.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lb_firstArtistDur.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lb_firstArtistDur.Location = new System.Drawing.Point(336, 164);
             this.lb_firstArtistDur.Name = "lb_firstArtistDur";
-            this.lb_firstArtistDur.Size = new System.Drawing.Size(35, 13);
+            this.lb_firstArtistDur.Size = new System.Drawing.Size(51, 21);
             this.lb_firstArtistDur.TabIndex = 10;
             this.lb_firstArtistDur.Text = "label1";
+            this.lb_firstArtistDur.Visible = false;
             // 
             // lb_firstArtistCharts
             // 
             this.lb_firstArtistCharts.AutoSize = true;
-            this.lb_firstArtistCharts.Location = new System.Drawing.Point(336, 164);
+            this.lb_firstArtistCharts.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_firstArtistCharts.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lb_firstArtistCharts.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lb_firstArtistCharts.Location = new System.Drawing.Point(336, 316);
             this.lb_firstArtistCharts.Name = "lb_firstArtistCharts";
-            this.lb_firstArtistCharts.Size = new System.Drawing.Size(35, 13);
+            this.lb_firstArtistCharts.Size = new System.Drawing.Size(51, 21);
             this.lb_firstArtistCharts.TabIndex = 12;
             this.lb_firstArtistCharts.Text = "label1";
+            this.lb_firstArtistCharts.Visible = false;
             // 
             // lb_secondArtistCharts
             // 
             this.lb_secondArtistCharts.AutoSize = true;
-            this.lb_secondArtistCharts.Location = new System.Drawing.Point(617, 164);
+            this.lb_secondArtistCharts.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_secondArtistCharts.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lb_secondArtistCharts.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lb_secondArtistCharts.Location = new System.Drawing.Point(336, 365);
             this.lb_secondArtistCharts.Name = "lb_secondArtistCharts";
-            this.lb_secondArtistCharts.Size = new System.Drawing.Size(35, 13);
+            this.lb_secondArtistCharts.Size = new System.Drawing.Size(51, 21);
             this.lb_secondArtistCharts.TabIndex = 13;
             this.lb_secondArtistCharts.Text = "label1";
+            this.lb_secondArtistCharts.Visible = false;
             // 
             // Form1
             // 
