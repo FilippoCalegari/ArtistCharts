@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btn_nameFilter = new System.Windows.Forms.Button();
             this.btn_popularitySort = new System.Windows.Forms.Button();
@@ -42,6 +45,8 @@
             this.lb_firstArtistDur = new System.Windows.Forms.Label();
             this.lb_firstArtistCharts = new System.Windows.Forms.Label();
             this.lb_secondArtistCharts = new System.Windows.Forms.Label();
+            this.chart_compareArtists = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_compareArtists)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_nameFilter
@@ -155,9 +160,9 @@
             // lb_firstArtistPop
             // 
             this.lb_firstArtistPop.AutoSize = true;
-            this.lb_firstArtistPop.BackColor = System.Drawing.SystemColors.Control;
+            this.lb_firstArtistPop.BackColor = System.Drawing.Color.Transparent;
             this.lb_firstArtistPop.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lb_firstArtistPop.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_firstArtistPop.ForeColor = System.Drawing.SystemColors.Control;
             this.lb_firstArtistPop.Location = new System.Drawing.Point(336, 12);
             this.lb_firstArtistPop.Name = "lb_firstArtistPop";
             this.lb_firstArtistPop.Size = new System.Drawing.Size(51, 21);
@@ -168,7 +173,7 @@
             // lb_secondArtistPop
             // 
             this.lb_secondArtistPop.AutoSize = true;
-            this.lb_secondArtistPop.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_secondArtistPop.BackColor = System.Drawing.Color.Transparent;
             this.lb_secondArtistPop.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_secondArtistPop.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lb_secondArtistPop.Location = new System.Drawing.Point(336, 61);
@@ -181,7 +186,7 @@
             // lb_secondArtistDur
             // 
             this.lb_secondArtistDur.AutoSize = true;
-            this.lb_secondArtistDur.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_secondArtistDur.BackColor = System.Drawing.Color.Transparent;
             this.lb_secondArtistDur.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_secondArtistDur.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lb_secondArtistDur.Location = new System.Drawing.Point(336, 213);
@@ -194,7 +199,7 @@
             // lb_firstArtistDur
             // 
             this.lb_firstArtistDur.AutoSize = true;
-            this.lb_firstArtistDur.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_firstArtistDur.BackColor = System.Drawing.Color.Transparent;
             this.lb_firstArtistDur.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_firstArtistDur.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lb_firstArtistDur.Location = new System.Drawing.Point(336, 164);
@@ -207,7 +212,7 @@
             // lb_firstArtistCharts
             // 
             this.lb_firstArtistCharts.AutoSize = true;
-            this.lb_firstArtistCharts.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_firstArtistCharts.BackColor = System.Drawing.Color.Transparent;
             this.lb_firstArtistCharts.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_firstArtistCharts.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lb_firstArtistCharts.Location = new System.Drawing.Point(336, 316);
@@ -220,7 +225,7 @@
             // lb_secondArtistCharts
             // 
             this.lb_secondArtistCharts.AutoSize = true;
-            this.lb_secondArtistCharts.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_secondArtistCharts.BackColor = System.Drawing.Color.Transparent;
             this.lb_secondArtistCharts.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_secondArtistCharts.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lb_secondArtistCharts.Location = new System.Drawing.Point(336, 365);
@@ -230,6 +235,27 @@
             this.lb_secondArtistCharts.Text = "label1";
             this.lb_secondArtistCharts.Visible = false;
             // 
+            // chart_compareArtists
+            // 
+            this.chart_compareArtists.BackColor = System.Drawing.Color.Transparent;
+            this.chart_compareArtists.BorderlineColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.chart_compareArtists.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart_compareArtists.Legends.Add(legend1);
+            this.chart_compareArtists.Location = new System.Drawing.Point(911, 12);
+            this.chart_compareArtists.Name = "chart_compareArtists";
+            this.chart_compareArtists.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart_compareArtists.Series.Add(series1);
+            this.chart_compareArtists.Size = new System.Drawing.Size(318, 374);
+            this.chart_compareArtists.TabIndex = 14;
+            this.chart_compareArtists.Text = "chart1";
+            this.chart_compareArtists.Visible = false;
+            this.chart_compareArtists.Click += new System.EventHandler(this.chart_compareArtists_Click);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -237,6 +263,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1243, 478);
+            this.Controls.Add(this.chart_compareArtists);
             this.Controls.Add(this.lb_secondArtistCharts);
             this.Controls.Add(this.lb_firstArtistCharts);
             this.Controls.Add(this.lb_secondArtistDur);
@@ -256,6 +283,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_compareArtists)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,6 +304,7 @@
         private System.Windows.Forms.Label lb_firstArtistDur;
         private System.Windows.Forms.Label lb_firstArtistCharts;
         private System.Windows.Forms.Label lb_secondArtistCharts;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_compareArtists;
     }
 }
 

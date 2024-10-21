@@ -41,6 +41,7 @@ namespace ArtistCharts
         {
             artistsCharts = new List<Artists>();
             FillList();
+            chart_compareArtists.DataSource = artistsCharts;
         }
 
         private void btn_nameFilter_Click(object sender, EventArgs e)
@@ -145,15 +146,31 @@ namespace ArtistCharts
         }
         private void btn_compareArtists_Click(object sender, EventArgs e)
         {
+            // Contatori
+            int firstNumberRecords = 0;
+            int secondNumberRecords = 0;
+
+            // Variabili popolarità
             int firstArtistPop = 0;
             int secondArtistPop = 0;
-            int counter = 0;
-            int firstArtistMedia;
-            int secondArtistMedia;
+
+            // Variabili durata
+            double firstArtistDur = 0;
+            double secondArtistDur = 0;
+
+            // Variabili media popolarità
+            int firstPopMedia;
+            int secondPoptMedia;
+
+            // Variabili media durata
+            double firstDurMedia;
+            double secondDurMedia;
+
             // Input box per inserire il nome degli artisti
             string firstArtist = Interaction.InputBox("Inserisci il nome del primo artista:", "Confronto tra due artisti", "");
             string secondArtist = Interaction.InputBox("Inserisci il nome del secondo artista:", "Confronto tra due artisti", "");
 
+            // Setup parte grafica
             list_artistsCharts.Hide();
             lb_firstArtistPop.Show();
             lb_secondArtistPop.Show();
@@ -161,27 +178,49 @@ namespace ArtistCharts
             lb_secondArtistDur.Show();
             lb_firstArtistCharts.Show();
             lb_secondArtistCharts.Show();
+            chart_compareArtists.Show();
 
             foreach (var artist in artistsCharts)
             {
                 if (artist.Artist == firstArtist)
                 {
                     firstArtistPop += Convert.ToInt32(artist.Popularity);
-                    counter++;
+                    firstArtistDur += Convert.ToDouble(artist.Duration);
+                    firstNumberRecords++;
                 }
 
                 if (artist.Artist == secondArtist)
                 {
                     secondArtistPop += Convert.ToInt32(artist.Popularity);
-                    counter++;
+                    secondArtistDur += Convert.ToDouble(artist.Duration);
+                    secondNumberRecords++;
                 }
             }
 
-            firstArtistMedia = firstArtistPop / counter;
-            secondArtistMedia = secondArtistPop / counter;
+            // Calcolo medie
+            firstPopMedia = firstArtistPop / firstNumberRecords;
+            secondPoptMedia = secondArtistPop / secondNumberRecords;
 
-            lb_firstArtistPop.Text = $"{firstArtist} ha una media di popolarità di {firstArtistMedia}";
-            lb_secondArtistPop.Text = $"{secondArtist} ha una media di popolarità di {secondArtistMedia}";
+            firstDurMedia = firstArtistDur / firstNumberRecords;
+            secondDurMedia = secondArtistDur / secondNumberRecords;
+
+            // Stampo media popolarità
+            lb_firstArtistPop.Text = $"{firstArtist} ha una media di popolarità di {firstPopMedia}.";
+            lb_secondArtistPop.Text = $"{secondArtist} ha una media di popolarità di {secondPoptMedia}.";
+
+            // Stampo media durata
+            lb_firstArtistDur.Text = $"{firstArtist} ha una media di durata delle tracce di {Math.Round(firstDurMedia)} minuti.";
+            lb_secondArtistDur.Text = $"{secondArtist} ha una media di durata delle tracce di {Math.Round(secondDurMedia)} minuti.";
+
+            // Stampo numero di record di quell'artista
+            lb_firstArtistCharts.Text = $"{firstArtist} ha {firstNumberRecords} tracce in top chart di spotify.";
+            lb_secondArtistCharts.Text = $"{secondArtist} ha {secondNumberRecords} tracce in top chart di spotify.";
+
+            foreach (var artist in artistsCharts)
+            {
+                //chart_compareArtists.Series.Add(artist.Artist);
+            }
+            
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -191,6 +230,13 @@ namespace ArtistCharts
         public void FillList()
         {
             list_artistsCharts.Show();
+            chart_compareArtists.Hide();
+            lb_firstArtistPop.Hide();
+            lb_secondArtistPop.Hide();
+            lb_firstArtistDur.Hide();
+            lb_secondArtistDur.Hide();
+            lb_firstArtistCharts.Hide();
+            lb_secondArtistCharts.Hide();
 
             artistsCharts.Clear(); // Svuoto la lista
             list_artistsCharts.Items.Clear(); // Pulisci gli elementi esistenti
@@ -323,6 +369,11 @@ namespace ArtistCharts
                 Duration = duration;
                 ID = id;
             }
+        }
+
+        private void chart_compareArtists_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
