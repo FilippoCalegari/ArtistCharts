@@ -10,6 +10,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Microsoft.VisualBasic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -41,7 +42,6 @@ namespace ArtistCharts
         {
             artistsCharts = new List<Artists>();
             FillList();
-            chart_compareArtists.DataSource = artistsCharts;
         }
 
         private void btn_nameFilter_Click(object sender, EventArgs e)
@@ -160,7 +160,7 @@ namespace ArtistCharts
 
             // Variabili media popolarità
             int firstPopMedia;
-            int secondPoptMedia;
+            int secondPopMedia;
 
             // Variabili media durata
             double firstDurMedia;
@@ -178,7 +178,9 @@ namespace ArtistCharts
             lb_secondArtistDur.Show();
             lb_firstArtistCharts.Show();
             lb_secondArtistCharts.Show();
-            chart_compareArtists.Show();
+            chart_popularity.Show();
+            //chart_duration.Show();
+            //chart_numHits.Show();
 
             foreach (var artist in artistsCharts)
             {
@@ -199,14 +201,14 @@ namespace ArtistCharts
 
             // Calcolo medie
             firstPopMedia = firstArtistPop / firstNumberRecords;
-            secondPoptMedia = secondArtistPop / secondNumberRecords;
+            secondPopMedia = secondArtistPop / secondNumberRecords;
 
             firstDurMedia = firstArtistDur / firstNumberRecords;
             secondDurMedia = secondArtistDur / secondNumberRecords;
 
             // Stampo media popolarità
             lb_firstArtistPop.Text = $"{firstArtist} ha una media di popolarità di {firstPopMedia}.";
-            lb_secondArtistPop.Text = $"{secondArtist} ha una media di popolarità di {secondPoptMedia}.";
+            lb_secondArtistPop.Text = $"{secondArtist} ha una media di popolarità di {secondPopMedia}.";
 
             // Stampo media durata
             lb_firstArtistDur.Text = $"{firstArtist} ha una media di durata delle tracce di {Math.Round(firstDurMedia)} minuti.";
@@ -216,11 +218,100 @@ namespace ArtistCharts
             lb_firstArtistCharts.Text = $"{firstArtist} ha {firstNumberRecords} tracce in top chart di spotify.";
             lb_secondArtistCharts.Text = $"{secondArtist} ha {secondNumberRecords} tracce in top chart di spotify.";
 
-            foreach (var artist in artistsCharts)
+            // Grafico confronto popolarità
+            chart_popularity.Series.Clear();
+            Series popoularity = new Series()
             {
-                //chart_compareArtists.Series.Add(artist.Artist);
-            }
-            
+                ChartType = SeriesChartType.Column,
+                IsVisibleInLegend = false
+            };
+
+            // Modifiche stile scritte
+            chart_popularity.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Arial", 10);
+            chart_popularity.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White; // Colore colonne asse X
+            chart_popularity.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White; // Colore numeri asse Y
+
+            // Modifiche grafico
+            chart_popularity.ChartAreas[0].BackColor = Color.Transparent; // Colore sfondo
+            chart_popularity.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.White;
+            chart_popularity.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.White;
+
+            chart_popularity.ChartAreas[0].AxisX.MinorGrid.LineColor = Color.White;
+            chart_popularity.ChartAreas[0].AxisY.MinorGrid.LineColor = Color.White;
+
+            chart_popularity.ChartAreas[0].AxisX.LineColor = Color.White;
+            chart_popularity.ChartAreas[0].AxisY.LineColor = Color.White;
+
+            //chart_popularity.ChartAreas[0].AxisY. = Color.White;
+
+            chart_popularity.ChartAreas[0].AxisX.Interval = 1;
+
+            chart_popularity.Series.Add(popoularity);
+
+            popoularity.Points.AddXY(firstArtist, firstPopMedia);
+            popoularity.Points.AddXY(secondArtist, secondPopMedia);
+
+            // Grafico confronto durata
+            chart_duration.Series.Clear();
+            Series duration = new Series()
+            {
+                ChartType = SeriesChartType.Column,
+                IsVisibleInLegend = false
+            };
+
+            // Modifiche stile scritte
+            chart_duration.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Arial", 10);
+            chart_duration.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White; // Colore colonne asse X
+            chart_duration.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White; // Colore numeri asse Y
+
+            // Modifiche grafico
+            chart_duration.ChartAreas[0].BackColor = Color.Transparent; // Colore sfondo
+            chart_duration.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.White;
+            chart_duration.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.White;
+
+            chart_duration.ChartAreas[0].AxisX.MinorGrid.LineColor = Color.White;
+            chart_duration.ChartAreas[0].AxisY.MinorGrid.LineColor = Color.White;
+
+            chart_duration.ChartAreas[0].AxisX.LineColor = Color.White;
+            chart_duration.ChartAreas[0].AxisY.LineColor = Color.White;
+
+            chart_duration.ChartAreas[0].AxisX.Interval = 1;
+
+            chart_duration.Series.Add(duration);
+
+            duration.Points.AddXY(firstArtist, firstDurMedia);
+            duration.Points.AddXY(secondArtist, secondDurMedia);
+
+            // Grafico confronto numero brani in top chart
+            chart_numHits.Series.Clear();
+            Series number = new Series()
+            {
+                ChartType = SeriesChartType.Column,
+                IsVisibleInLegend = false
+            };
+
+            // Modifiche stile scritte
+            chart_numHits.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Arial", 10);
+            chart_numHits.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White; // Colore colonne asse X
+            chart_numHits.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White; // Colore numeri asse Y
+
+            // Modifiche grafico
+            chart_numHits.ChartAreas[0].BackColor = Color.Transparent; // Colore sfondo
+            chart_numHits.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.White;
+            chart_numHits.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.White;
+
+            chart_numHits.ChartAreas[0].AxisX.MinorGrid.LineColor = Color.White;
+            chart_numHits.ChartAreas[0].AxisY.MinorGrid.LineColor = Color.White;
+
+            chart_numHits.ChartAreas[0].AxisX.LineColor = Color.White;
+            chart_numHits.ChartAreas[0].AxisY.LineColor = Color.White;
+
+            chart_numHits.ChartAreas[0].AxisX.Interval = 1;
+
+            chart_numHits.Series.Add(number);
+
+            number.Points.AddXY(firstArtist, firstNumberRecords);
+            number.Points.AddXY(secondArtist, secondNumberRecords);
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -230,7 +321,9 @@ namespace ArtistCharts
         public void FillList()
         {
             list_artistsCharts.Show();
-            chart_compareArtists.Hide();
+            chart_popularity.Hide();
+            chart_duration.Hide();
+            chart_numHits.Hide();
             lb_firstArtistPop.Hide();
             lb_secondArtistPop.Hide();
             lb_firstArtistDur.Hide();
@@ -372,6 +465,11 @@ namespace ArtistCharts
         }
 
         private void chart_compareArtists_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void webBrowser_spotify_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
         }
