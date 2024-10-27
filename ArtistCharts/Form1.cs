@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -170,17 +171,8 @@ namespace ArtistCharts
             string firstArtist = Interaction.InputBox("Inserisci il nome del primo artista:", "Confronto tra due artisti", "");
             string secondArtist = Interaction.InputBox("Inserisci il nome del secondo artista:", "Confronto tra due artisti", "");
 
-            // Setup parte grafica
             list_artistsCharts.Hide();
-            lb_firstArtistPop.Show();
-            lb_secondArtistPop.Show();
-            lb_firstArtistDur.Show();
-            lb_secondArtistDur.Show();
-            lb_firstArtistCharts.Show();
-            lb_secondArtistCharts.Show();
-            chart_popularity.Show();
-            //chart_duration.Show();
-            //chart_numHits.Show();
+            lb_choice.Show();
 
             foreach (var artist in artistsCharts)
             {
@@ -205,18 +197,6 @@ namespace ArtistCharts
 
             firstDurMedia = firstArtistDur / firstNumberRecords;
             secondDurMedia = secondArtistDur / secondNumberRecords;
-
-            // Stampo media popolarità
-            lb_firstArtistPop.Text = $"{firstArtist} ha una media di popolarità di {firstPopMedia}.";
-            lb_secondArtistPop.Text = $"{secondArtist} ha una media di popolarità di {secondPopMedia}.";
-
-            // Stampo media durata
-            lb_firstArtistDur.Text = $"{firstArtist} ha una media di durata delle tracce di {Math.Round(firstDurMedia)} minuti.";
-            lb_secondArtistDur.Text = $"{secondArtist} ha una media di durata delle tracce di {Math.Round(secondDurMedia)} minuti.";
-
-            // Stampo numero di record di quell'artista
-            lb_firstArtistCharts.Text = $"{firstArtist} ha {firstNumberRecords} tracce in top chart di spotify.";
-            lb_secondArtistCharts.Text = $"{secondArtist} ha {secondNumberRecords} tracce in top chart di spotify.";
 
             // Grafico confronto popolarità
             chart_popularity.Series.Clear();
@@ -312,6 +292,33 @@ namespace ArtistCharts
 
             number.Points.AddXY(firstArtist, firstNumberRecords);
             number.Points.AddXY(secondArtist, secondNumberRecords);
+
+            //lb_choice.Text = $"Gli artisti comparati sono {firstArtist} e {secondArtist}.";
+
+            lb_firstArtistPop.Show();
+            lb_secondArtistPop.Show();
+            chart_popularity.Show();
+
+            // Stampo media popolarità
+            lb_firstArtistPop.Text = $"- {firstArtist} ha una media di popolarità di {firstPopMedia}.";
+            lb_secondArtistPop.Text = $"- {secondArtist} ha una media di popolarità di {secondPopMedia}.";
+       
+            lb_firstArtistDur.Show();
+            lb_secondArtistDur.Show();
+            chart_duration.Show();
+
+            // Stampo media durata
+            lb_firstArtistDur.Text = $"> {firstArtist} ha una media di durata delle tracce di {Math.Round(firstDurMedia)} minuti.";
+            lb_secondArtistDur.Text = $"> {secondArtist} ha una media di durata delle tracce di {Math.Round(secondDurMedia)} minuti.";
+     
+            lb_firstArtistCharts.Show();
+            lb_secondArtistCharts.Show();
+            chart_numHits.Show();
+
+            // Stampo numero di record di quell'artista
+            lb_firstArtistCharts.Text = $"+ {firstArtist} ha {firstNumberRecords} tracce in top chart di spotify.";
+            lb_secondArtistCharts.Text = $"+ {secondArtist} ha {secondNumberRecords} tracce in top chart di spotify.";
+        
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -472,6 +479,10 @@ namespace ArtistCharts
         private void webBrowser_spotify_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
+        }
+        private void cb_choice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
