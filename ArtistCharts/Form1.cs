@@ -167,9 +167,88 @@ namespace ArtistCharts
             double firstDurMedia;
             double secondDurMedia;
 
-            // Input box per inserire il nome degli artisti
-            string firstArtist = Interaction.InputBox("Inserisci il nome del primo artista:", "Confronto tra due artisti", "");
-            string secondArtist = Interaction.InputBox("Inserisci il nome del secondo artista:", "Confronto tra due artisti", "");
+            // Variabili nome artisti
+            string firstArtist;
+            string secondArtist;
+            bool artistFound = false;
+
+            do
+            {
+                // Input box per inserire il nome degli artisti
+                firstArtist = Interaction.InputBox("Inserisci il nome del primo artista:", "Confronto tra due artisti", "");
+
+                // Se l'utente non inserisce nulla, usciamo dalla funzione
+                if (string.IsNullOrWhiteSpace(firstArtist))
+                {
+                    MessageBox.Show("Inserisci il nome dell'artista.");
+                    return;
+                }
+
+                // Iteriamo su tutti gli artisti nella collezione artistsCharts
+                foreach (var artist in artistsCharts)
+                {
+                    // Controlliamo se il nome dell'artista corrisponde a quello inserito dall'utente (con confronto case-insensitive)
+                    if (artist.Artist.Equals(firstArtist, StringComparison.OrdinalIgnoreCase))
+                    {
+                        ListViewItem item = new ListViewItem(artist.Artist);
+                        item.SubItems.Add(artist.TrackName);
+                        item.SubItems.Add(artist.Popularity);
+                        item.SubItems.Add(artist.Duration);
+                        item.SubItems.Add(artist.ID);
+
+                        list_artistsCharts.Items.Add(item);
+
+                        artistFound = true; // Artista trovato
+                    }
+                }
+
+                // Se l'artista non è stato trovato, mostriamo un messaggio
+                if (!artistFound)
+                {
+                    MessageBox.Show("Artista non trovato.");
+                }
+
+            } while (!artistFound);
+
+            artistFound = false;
+
+            do
+            {
+                // Input box per inserire il nome degli artisti
+                secondArtist = Interaction.InputBox("Inserisci il nome del primo artista:", "Confronto tra due artisti", "");
+
+                // Se l'utente non inserisce nulla, usciamo dalla funzione
+                if (string.IsNullOrWhiteSpace(secondArtist))
+                {
+                    MessageBox.Show("Inserisci il nome dell'artista.");
+                    return;
+                }
+
+                // Iteriamo su tutti gli artisti nella collezione artistsCharts
+                foreach (var artist in artistsCharts)
+                {
+                    // Controlliamo se il nome dell'artista corrisponde a quello inserito dall'utente (con confronto case-insensitive)
+                    if (artist.Artist.Equals(secondArtist, StringComparison.OrdinalIgnoreCase))
+                    {
+                        ListViewItem item = new ListViewItem(artist.Artist);
+                        item.SubItems.Add(artist.TrackName);
+                        item.SubItems.Add(artist.Popularity);
+                        item.SubItems.Add(artist.Duration);
+                        item.SubItems.Add(artist.ID);
+
+                        list_artistsCharts.Items.Add(item);
+
+                        artistFound = true; // Artista trovato
+                    }
+                }
+
+                // Se l'artista non è stato trovato, mostriamo un messaggio
+                if (!artistFound)
+                {
+                    MessageBox.Show("Artista non trovato.");
+                }
+
+            } while (!artistFound);
 
             list_artistsCharts.Hide();
             lb_choice.Show();
@@ -337,6 +416,7 @@ namespace ArtistCharts
             lb_secondArtistDur.Hide();
             lb_firstArtistCharts.Hide();
             lb_secondArtistCharts.Hide();
+            lb_choice.Hide();
 
             artistsCharts.Clear(); // Svuoto la lista
             list_artistsCharts.Items.Clear(); // Pulisci gli elementi esistenti
